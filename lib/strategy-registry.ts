@@ -29,6 +29,32 @@ export interface StrategyIntegration {
 
 export const STRATEGY_REGISTRY: StrategyIntegration[] = [
   {
+    id: "idle",
+    name: "Idle (no strategy allocated)",
+    chain: "robinhood-mainnet",
+    protocol: "None — assets held in-vault",
+    docsUrl: "https://github.com/carynyx80/Singulariss",
+    contractAddresses: {},
+    supportedAssets: ["USDG"],
+    status: "Disabled",
+    audit: "No strategy contract involved; vault code covered by Hardhat suite, no independent audit.",
+    risks: ["No yield while idle", "Smart-contract risk of the vault itself"],
+    notes: "Launch posture: 100% of assets stay idle in the vault and fully withdrawable. Allocation enabled only after an adapter is reviewed.",
+  },
+  {
+    id: "idle",
+    name: "Idle (no strategy allocated)",
+    chain: "bsc-mainnet",
+    protocol: "None — assets held in-vault",
+    docsUrl: "https://github.com/carynyx80/Singulariss",
+    contractAddresses: {},
+    supportedAssets: ["USDC"],
+    status: "Disabled",
+    audit: "No strategy contract involved; vault code covered by Hardhat suite, no independent audit.",
+    risks: ["No yield while idle", "Smart-contract risk of the vault itself"],
+    notes: "Launch posture: 100% of assets stay idle in the vault and fully withdrawable. Allocation enabled only after an adapter is reviewed.",
+  },
+  {
     id: "mock-local",
     name: "MockStrategy (dev only)",
     chain: "robinhood-testnet",

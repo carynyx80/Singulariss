@@ -57,6 +57,7 @@ contract SingularisVault is ERC4626, AccessControl, Pausable, ReentrancyGuard {
     event StrategyWithdrawn(uint256 amount);
     event DepositCapSet(uint256 cap);
     event FeeConfigSet(uint256 bps, address recipient);
+    event MaxAllocationBpsSet(uint256 bps);
 
     error FeeTooHigh();
     error ZeroAmount();
@@ -191,6 +192,13 @@ contract SingularisVault is ERC4626, AccessControl, Pausable, ReentrancyGuard {
 
     function _accrueFee() internal {
         uint256 ta = totalAssets();
+        // First touch initializes the high-water mark: initial deposits are
+        // principal, never "profit". Without this, the first depositor would
+        // pay a fee on their own deposit.
+        if (highWaterMark == 0) {
+            highWaterMark = ta;
+            return;
+        }
         if (ta <= highWaterMark || performanceFeeBps == 0) {
             if (ta > highWaterMark) highWaterMark = ta;
             return;
@@ -268,6 +276,7 @@ contract SingularisVault is ERC4626, AccessControl, Pausable, ReentrancyGuard {
     function setMaxAllocationBps(uint256 bps) external onlyRole(DEFAULT_ADMIN_ROLE) {
         require(bps <= MAX_BPS, "bps>max");
         maxAllocationBps = bps;
+        emit MaxAllocationBpsSet(bps);
     }
 
     function pause() external onlyRole(PAUSE_ROLE) {

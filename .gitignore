@@ -2,6 +2,8 @@
 node_modules/
 out/
 contracts/out/
+contracts/hh-artifacts/
+contracts/hh-cache/
 *.local
 *.log
 .env

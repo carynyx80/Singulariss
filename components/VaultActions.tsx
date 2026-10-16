@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { useAccount } from "wagmi";
-import { ACTIVE_CHAIN, explorerTxUrl } from "@/lib/chains";
+import { CHAINS, explorerTxUrl } from "@/lib/chains";
 import { formatUnits, friendlyError, parseUnitsStrict } from "@/lib/utils";
 import { useVaultReads, useVaultTx } from "@/lib/useVault";
 import type { VaultMeta } from "@/lib/vaults";
@@ -129,7 +129,7 @@ export function VaultActions({ vault }: { vault: VaultMeta }) {
       <p className="mt-3 text-xs text-muted">
         Fees: {(vault.performanceFeeBps / 100).toFixed(1)}% performance on realized profit only ·{" "}
         {vault.managementFeeBps === 0 ? "no management fee" : `${vault.managementFeeBps / 100}% management fee`} ·
-        chain {ACTIVE_CHAIN.label}. Never confirmed until on-chain receipt.
+        chain {CHAINS[vault.chain].label}. Never confirmed until on-chain receipt.
       </p>
     </div>
   );
