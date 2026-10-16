@@ -25,8 +25,9 @@ export function Navbar() {
     <header className="sticky top-0 z-40 border-b border-ink-700 bg-ink-950/90 backdrop-blur">
       <div className="mx-auto flex max-w-6xl items-center justify-between gap-3 px-4 py-3 sm:px-6">
         <Link href="/" className="flex items-center gap-3">
-          <span className="grid h-9 w-9 place-items-center rounded-xl bg-accent font-mono text-lg font-bold text-white">
-            S
+          <span className="relative grid h-9 w-9 place-items-center overflow-hidden rounded-xl bg-black ring-1 ring-accent/30">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/logo.png" alt="" width={36} height={36} className="h-full w-full object-cover" />
           </span>
           <span className="leading-tight">
             <span className="block text-sm font-bold tracking-[0.2em]">SINGULARIS</span>

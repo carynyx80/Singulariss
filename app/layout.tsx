@@ -8,6 +8,10 @@ export const metadata: Metadata = {
   title: "Singularis — Put Your Capital to Work",
   description:
     "Singularis is a planned multichain DeFi capital protocol concept for lending, borrowing, and approved yield strategies across Robinhood Chain and BNB Chain. Preview only — no live markets or transactions.",
+  icons: {
+    icon: "/logo.png",
+    apple: "/logo.png",
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
