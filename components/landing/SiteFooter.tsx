@@ -5,8 +5,10 @@ const COLUMNS = [
     title: "Protocol",
     links: [
       { label: "Markets overview", href: "#markets" },
+      { label: "Lending", href: "/lend" },
+      { label: "Borrowing", href: "/borrow" },
       { label: "How it works", href: "#how-it-works" },
-      { label: "Dashboard preview", href: "#preview" },
+      { label: "Live wallet", href: "/preview" },
     ],
   },
   {

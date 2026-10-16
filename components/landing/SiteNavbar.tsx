@@ -8,6 +8,8 @@ import { LogoMark } from "./LogoMark";
 
 const LINKS = [
   { href: "#markets", label: "Markets" },
+  { href: "/lend", label: "Lending" },
+  { href: "/borrow", label: "Borrowing" },
   { href: "#strategies", label: "Strategies" },
   { href: "#ecosystem", label: "Ecosystem" },
   { href: "#about", label: "About" },
