@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { Providers } from "@/components/Providers";
-import { Navbar } from "@/components/Navbar";
+import { SiteNavbar } from "@/components/landing/SiteNavbar";
+import { SiteFooter } from "@/components/landing/SiteFooter";
 
 export const metadata: Metadata = {
-  title: "SINGULARIS — Capital in motion",
+  title: "Singularis — Put Your Capital to Work",
   description:
-    "SINGULARIS is a non-custodial multi-chain DeFi protocol for transparent on-chain yield vaults. Initial deployment: Robinhood Chain.",
+    "Singularis is a planned multichain DeFi capital protocol concept for lending, borrowing, and approved yield strategies across Robinhood Chain and BNB Chain. Preview only — no live markets or transactions.",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -14,20 +15,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en">
       <body>
         <Providers>
-          <Navbar />
-          <main className="mx-auto w-full max-w-6xl px-4 pb-24 pt-6 sm:px-6">{children}</main>
-          <footer className="border-t border-ink-700 py-8">
-            <div className="mx-auto flex max-w-6xl flex-col gap-2 px-4 text-sm text-muted sm:px-6">
-              <div className="flex items-center justify-between">
-                <span className="font-semibold tracking-widest text-paper">SINGULARIS</span>
-                <span className="num">Capital in motion.</span>
-              </div>
-              <p>
-                Non-custodial vault protocol. Contracts unaudited — testnet only. Never deposit
-                mainnet funds into unverified strategies.
-              </p>
-            </div>
-          </footer>
+          <div id="top">
+            <SiteNavbar />
+            <main className="w-full">{children}</main>
+            <SiteFooter />
+          </div>
         </Providers>
       </body>
     </html>
