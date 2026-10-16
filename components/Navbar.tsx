@@ -27,7 +27,7 @@ export function Navbar() {
         <Link href="/" className="flex items-center gap-3">
           <span className="relative grid h-9 w-9 place-items-center overflow-hidden rounded-xl bg-black ring-1 ring-accent/30">
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/logo.png" alt="" width={36} height={36} className="h-full w-full object-cover" />
+            <img src="/logo.jpg" alt="" width={36} height={36} className="h-full w-full object-cover" />
           </span>
           <span className="leading-tight">
             <span className="block text-sm font-bold tracking-[0.2em]">SINGULARIS</span>
