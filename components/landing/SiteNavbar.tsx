@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useState } from "react";
 import { ArrowUpRight, Menu, X } from "lucide-react";
+import { ConnectWalletButton } from "./ConnectWalletButton";
 import { LogoMark } from "./LogoMark";
 
 const LINKS = [
@@ -39,20 +40,19 @@ export function SiteNavbar() {
         </nav>
 
         <div className="hidden items-center gap-2 lg:flex">
-          <span className="badge" title="Planned networks — not yet connected">
-            <span className="h-1.5 w-1.5 rounded-full bg-amber-400" aria-hidden="true" />
+          <span className="badge" title="Supported networks for wallet connection">
+            <span className="h-1.5 w-1.5 rounded-full bg-[#10B981]" aria-hidden="true" />
             <span className="text-muted">Robinhood Chain · BNB Chain</span>
-            <span className="font-semibold text-white/80">Planned</span>
+            <span className="font-semibold text-white/80">Mainnet</span>
           </span>
-          <Link href="/preview" className="btn-primary !min-h-0 !px-4 !py-2 text-sm">
+          <Link href="/preview" className="btn-ghost !min-h-0 !px-4 !py-2 text-sm">
             Launch App <ArrowUpRight size={16} aria-hidden="true" />
           </Link>
+          <ConnectWalletButton />
         </div>
 
         <div className="flex items-center gap-2 lg:hidden">
-          <Link href="/preview" className="btn-primary !min-h-0 !px-3.5 !py-2 text-sm">
-            Launch App
-          </Link>
+          <ConnectWalletButton />
           <button
             type="button"
             onClick={() => setOpen((v) => !v)}
@@ -83,11 +83,12 @@ export function SiteNavbar() {
             ))}
             <div className="mt-3 rounded-xl border border-white/[0.08] bg-white/[0.02] p-3 text-xs text-muted">
               <p className="font-semibold uppercase tracking-wider text-white/70">Networks</p>
-              <p className="mt-1">Robinhood Chain — planned, not yet connected</p>
-              <p>BNB Chain — planned, not yet connected</p>
+              <p className="mt-1">Robinhood Chain — mainnet supported</p>
+              <p>BNB Chain — mainnet supported</p>
             </div>
             <p className="mt-2 px-1 text-xs text-muted">
-              Demo preview only. No wallet connection or transactions in this phase.
+              Wallet connection is live for the two mainnets. Markets and transactions remain a
+              preview — no deposits in this phase.
             </p>
           </div>
         </nav>

@@ -42,7 +42,7 @@ export function Hero() {
           <div className="mt-6 flex flex-wrap gap-2 text-xs">
             <span className="badge">Robinhood Chain · Planned</span>
             <span className="badge">BNB Chain · Planned</span>
-            <span className="badge">No wallet connection in this phase</span>
+            <span className="badge">Wallet connects to both mainnets</span>
           </div>
         </Reveal>
 

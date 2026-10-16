@@ -7,7 +7,7 @@ const STEPS = [
     icon: Wallet,
     step: "Step 1",
     title: "Connect a supported wallet",
-    body: "In a future release, you would connect a supported wallet to view positions per network. Wallet connection is not implemented in this preview.",
+    body: "Connect a supported wallet to Robinhood Chain or BNB Chain mainnet using the header button, then switch networks anytime from the wallet menu.",
   },
   {
     icon: WalletCards,
@@ -56,9 +56,9 @@ export function HowItWorks() {
             <Info size={18} className="mt-0.5 shrink-0 text-amber-300" aria-hidden="true" />
             <p>
               <span className="font-semibold text-white">Preview notice: </span>
-              wallet connection and on-chain transactions are intentionally not implemented in this
-              phase. Buttons that resemble app actions scroll to the static dashboard preview
-              below.
+              wallet connection works for both mainnets, but deposits, borrowing, and on-chain
+              transactions are intentionally not implemented in this phase. The dashboard below
+              remains a static preview.
             </p>
           </div>
         </Reveal>

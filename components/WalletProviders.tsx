@@ -11,18 +11,16 @@ import { CHAINS } from "@/lib/chains";
  * Wallet stack (wagmi + RainbowKit + WalletConnect).
  * Client-only: WalletConnect touches indexedDB at setup, which does not
  * exist during SSR. This module is loaded via dynamic(ssr:false) in Providers.
+ *
+ * Mainnet-only: exposes Robinhood Chain mainnet (4663) and BNB Smart Chain
+ * mainnet (56). No testnets, no other networks — the RainbowKit network
+ * switcher will only ever offer these two.
+ *
+ * NOTE: connecting a wallet only reads accounts and switches networks.
+ * Vault deployments on mainnet stay disabled (`enabled: false` in
+ * lib/chains.ts) until audit + explicit approval, so no deposits can occur.
  */
 const chains = [
-  {
-    id: CHAINS["robinhood-testnet"].id,
-    name: CHAINS["robinhood-testnet"].label,
-    nativeCurrency: { name: "ETH", symbol: "ETH", decimals: 18 },
-    rpcUrls: { default: { http: [CHAINS["robinhood-testnet"].rpcUrl] } },
-    blockExplorers: {
-      default: { name: "Explorer", url: CHAINS["robinhood-testnet"].explorerUrl },
-    },
-    testnet: true,
-  },
   {
     id: CHAINS["robinhood-mainnet"].id,
     name: CHAINS["robinhood-mainnet"].label,
@@ -31,16 +29,6 @@ const chains = [
     blockExplorers: {
       default: { name: "Explorer", url: CHAINS["robinhood-mainnet"].explorerUrl },
     },
-  },
-  {
-    id: CHAINS["bsc-testnet"].id,
-    name: CHAINS["bsc-testnet"].label,
-    nativeCurrency: { name: "tBNB", symbol: "tBNB", decimals: 18 },
-    rpcUrls: { default: { http: [CHAINS["bsc-testnet"].rpcUrl] } },
-    blockExplorers: {
-      default: { name: "Explorer", url: CHAINS["bsc-testnet"].explorerUrl },
-    },
-    testnet: true,
   },
   {
     id: CHAINS["bsc-mainnet"].id,
@@ -58,9 +46,7 @@ const config = getDefaultConfig({
   projectId: process.env.NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID || "singularis-dev",
   chains: chains as never,
   transports: {
-    [CHAINS["robinhood-testnet"].id]: http(CHAINS["robinhood-testnet"].rpcUrl),
     [CHAINS["robinhood-mainnet"].id]: http(CHAINS["robinhood-mainnet"].rpcUrl),
-    [CHAINS["bsc-testnet"].id]: http(CHAINS["bsc-testnet"].rpcUrl),
     [CHAINS["bsc-mainnet"].id]: http(CHAINS["bsc-mainnet"].rpcUrl),
   } as never,
   ssr: true,
@@ -71,7 +57,9 @@ export function WalletProviders({ children }: { children: React.ReactNode }) {
   return (
     <WagmiProvider config={config}>
       <QueryClientProvider client={queryClient}>
-        <RainbowKitProvider theme={darkTheme({ accentColor: "#2E6BFF", accentColorForeground: "#FFFFFF" })}>
+        <RainbowKitProvider
+          theme={darkTheme({ accentColor: "#10B981", accentColorForeground: "#05281C" })}
+        >
           {children}
         </RainbowKitProvider>
       </QueryClientProvider>

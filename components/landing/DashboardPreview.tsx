@@ -33,7 +33,7 @@ function PreviewNotice() {
         Preview Mode — No live transactions
       </p>
       <p className="text-xs text-muted sm:text-right">
-        Static demo data only. Tabs switch locally with no blockchain connectivity.
+        Static demo data only. Tabs switch locally — connecting a wallet does not enable transactions.
       </p>
     </div>
   );
@@ -266,7 +266,7 @@ export function DashboardPreview({ compact = false }: { compact?: boolean }) {
             <div className="flex flex-col gap-1 border-t border-white/[0.07] bg-white/[0.01] px-5 py-3.5 text-xs text-muted sm:flex-row sm:items-center sm:justify-between">
               <span className="inline-flex items-center gap-1.5">
                 <ShieldAlert size={14} aria-hidden="true" />
-                No wallet connection · No transactions · Demo data only
+                Mainnet wallet connection · No transactions · Demo data only
               </span>
               <span>Not real TVL, funds, yield, or market data</span>
             </div>
