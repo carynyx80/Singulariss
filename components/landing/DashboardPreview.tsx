@@ -8,6 +8,7 @@ import { chainById } from "@/lib/chains";
 import { assetsForChain } from "@/lib/tokens";
 import { useAssetBalances } from "@/lib/useBalances";
 import { ActivityFeed } from "./ActivityFeed";
+import { BorrowTab } from "./BorrowTab";
 import { Reveal } from "./Reveal";
 import { SectionHeading } from "./SectionHeading";
 import { TransferForm } from "./TransferForm";
@@ -15,6 +16,7 @@ import { TransferForm } from "./TransferForm";
 const TABS = [
   { id: "overview", label: "Overview" },
   { id: "send", label: "Send & Receive" },
+  { id: "borrow", label: "Borrow" },
   { id: "activity", label: "Activity" },
 ] as const;
 
@@ -175,6 +177,7 @@ export function DashboardPreview({ compact = false }: { compact?: boolean }) {
             <div className="p-4 sm:p-5" role="tabpanel">
               {tab === "overview" ? <OverviewTab /> : null}
               {tab === "send" ? <TransferForm /> : null}
+              {tab === "borrow" ? <BorrowTab /> : null}
               {tab === "activity" ? <ActivityFeed /> : null}
             </div>
 

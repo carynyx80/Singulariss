@@ -89,7 +89,7 @@ export function vaultCatalogue(): VaultMeta[] {
       chain: "bsc-testnet",
       description:
         "BSC counterpart of the core vault. Separate deployment, addresses, and risk params. Activated only after Robinhood testnet proves reliable.",
-      strategyId: "bsc-lending",
+      strategyId: "idle-testnet",
       performanceFeeBps: 500,
       managementFeeBps: 0,
       capAssets: "100",

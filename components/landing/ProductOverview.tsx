@@ -13,9 +13,9 @@ const CARDS = [
   {
     icon: Landmark,
     title: "Borrow",
-    body: "Borrow against eligible collateral with transparent limits — enabled only after contracts launch.",
-    points: ["Not deployed yet", "Collateral rules to be published", "Clear exposure controls"],
-    live: false,
+    body: "Borrow USDC or BNB against your collateral on BNB Chain through the audited Venus Core Pool, from the Borrow tab.",
+    points: ["Live on BNB Chain", "Overcollateralized", "Liquidation risk applies"],
+    live: true,
   },
   {
     icon: LineChart,
@@ -44,7 +44,7 @@ export function ProductOverview() {
             description="Wallet balances and transfers work now on both mainnets. Lending, borrowing, and strategies unlock only after contracts are deployed and reviewed."
           />
           <Reveal delay={100}>
-            <span className="status-chip">Wallet live · Lending not deployed</span>
+            <span className="status-chip">Wallet, vaults & borrowing live</span>
           </Reveal>
         </div>
 
