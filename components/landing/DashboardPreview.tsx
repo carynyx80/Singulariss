@@ -105,9 +105,13 @@ function OverviewTab() {
       <div className="flex items-start gap-3 rounded-2xl border border-white/[0.07] bg-white/[0.01] p-4 text-sm">
         <Lock size={16} className="mt-0.5 shrink-0 text-muted" aria-hidden="true" />
         <p className="text-muted">
-          <span className="font-semibold text-white">Lending, borrowing, and yield strategies</span>{" "}
-          are not available yet — no protocol contracts are deployed. Your assets stay in your
-          wallet until contracts are deployed, reviewed, and explicitly enabled.
+          <span className="font-semibold text-white">Put assets to work:</span> supply USDG or
+          USDC into the live vaults from the{" "}
+          <a href="/vaults" className="font-semibold text-accent-bright hover:underline">
+            vault explorer
+          </a>
+          , or borrow on BNB Chain from the Borrow tab. Vault yield strategies stay off until
+          explicitly enabled — deposits sit idle and fully withdrawable meanwhile.
         </p>
       </div>
     </div>

@@ -6,9 +6,9 @@ const CARDS = [
   {
     icon: HandCoins,
     title: "Lend",
-    body: "Supply supported assets to lending markets once protocol contracts are deployed and reviewed.",
-    points: ["Not deployed yet", "Contracts required", "Risk-aware presentation"],
-    live: false,
+    body: "Supply USDG on Robinhood Chain or USDC on BNB Chain into live ERC-4626 vaults — capped, pausable, fully withdrawable.",
+    points: ["Live on both mainnets", "10k caps per vault", "Withdraw anytime"],
+    live: true,
   },
   {
     icon: Landmark,
@@ -40,8 +40,8 @@ export function ProductOverview() {
         <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
           <SectionHeading
             eyebrow="Product overview"
-            title="Live wallet today, lending when ready"
-            description="Wallet balances and transfers work now on both mainnets. Lending, borrowing, and strategies unlock only after contracts are deployed and reviewed."
+            title="Live wallet, lending, and borrowing"
+            description="Balances, transfers, vault deposits, and Venus borrowing work now. Vault yield strategies activate after review — funds stay idle and withdrawable until then."
           />
           <Reveal delay={100}>
             <span className="status-chip">Wallet, vaults & borrowing live</span>
