@@ -87,8 +87,8 @@ export function SiteNavbar() {
               <p>BNB Chain — mainnet supported</p>
             </div>
             <p className="mt-2 px-1 text-xs text-muted">
-              Wallet connection is live for the two mainnets. Markets and transactions remain a
-              preview — no deposits in this phase.
+              Wallet connection is live for the two mainnets. Lending markets remain
+              unavailable — no protocol deposits yet.
             </p>
           </div>
         </nav>

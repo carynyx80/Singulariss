@@ -30,11 +30,11 @@ export function FinalCta() {
                   Explore the Preview <ArrowRight size={17} aria-hidden="true" />
                 </Link>
                 <Link href="/preview" className="btn-ghost">
-                  Open demo dashboard
+                  Open live wallet
                 </Link>
               </div>
               <p className="mt-5 text-xs text-muted">
-                Concept preview only · Illustrative demo data · No live transactions
+                Live wallet balances & transfers · Lending not deployed yet
               </p>
             </div>
           </div>

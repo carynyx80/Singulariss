@@ -13,7 +13,7 @@ const STEPS = [
     icon: WalletCards,
     step: "Step 2",
     title: "Supply eligible assets",
-    body: "Eligible assets could be supplied to planned lending markets. No deposits, approvals, or transfers are available in this phase.",
+    body: "Eligible assets will be supplied to lending markets once contracts deploy. Meanwhile your assets live in your own wallet — hold and transfer them freely.",
   },
   {
     icon: Search,

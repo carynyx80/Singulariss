@@ -153,7 +153,7 @@
     color: #6ee7b7;
   }
 
-  .demo-chip {
+  .status-chip {
     display: inline-flex;
     align-items: center;
     gap: 0.3rem;

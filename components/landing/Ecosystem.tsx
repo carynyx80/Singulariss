@@ -67,8 +67,8 @@ export function Ecosystem() {
 
         <Reveal delay={120}>
           <p className="mx-auto mt-6 max-w-3xl text-center text-xs leading-relaxed text-muted">
-            Network names are shown for orientation only. This preview does not publish chain IDs,
-            deployment addresses, partnerships, or completed deployments.
+            Wallet connection already works on both networks below. No protocol deployment
+            addresses, partnerships, or completed lending deployments are implied.
           </p>
         </Reveal>
       </div>

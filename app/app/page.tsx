@@ -22,8 +22,8 @@ export default function AppDashboard() {
             SINGULARIS is non-custodial. Use the Connect Wallet button in the header —
             Robinhood Chain and BNB Chain mainnets are supported.
           </p>
-          <Link href="/preview" className="btn-ghost mt-6 inline-block">
-            View the demo preview without connecting
+          <Link href="/" className="btn-ghost mt-6 inline-block">
+            Explore without connecting
           </Link>
         </div>
       </div>

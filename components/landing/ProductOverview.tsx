@@ -6,26 +6,30 @@ const CARDS = [
   {
     icon: HandCoins,
     title: "Lend",
-    body: "Supply supported assets to lending markets and follow planned supply positions from one unified view.",
-    points: ["Planned supply markets", "Illustrative rates for layout", "Risk-aware presentation"],
+    body: "Supply supported assets to lending markets once protocol contracts are deployed and reviewed.",
+    points: ["Not deployed yet", "Contracts required", "Risk-aware presentation"],
+    live: false,
   },
   {
     icon: Landmark,
     title: "Borrow",
-    body: "Access borrowing against eligible collateral with transparent limits and health indicators.",
-    points: ["Planned collateralized borrowing", "Illustrative limits only", "Clear exposure controls"],
+    body: "Borrow against eligible collateral with transparent limits — enabled only after contracts launch.",
+    points: ["Not deployed yet", "Collateral rules to be published", "Clear exposure controls"],
+    live: false,
   },
   {
     icon: LineChart,
     title: "Strategies",
-    body: "Discover approved yield strategies with transparent risks, constraints, and exit expectations.",
-    points: ["Curated strategy concepts", "Explicit risk labels", "No live yield implied"],
+    body: "Approved yield strategies with transparent risks will appear here after review and deployment.",
+    points: ["Not deployed yet", "Explicit risk labels", "No yield implied today"],
+    live: false,
   },
   {
     icon: Vault,
-    title: "Collateral",
-    body: "Manage eligible assets and collateral exposure with a calm, readable overview of planned positions.",
-    points: ["Eligibility previews", "Demo loan-to-value", "Conservative defaults"],
+    title: "Wallet",
+    body: "Your live ETH + USDG on Robinhood Chain and BNB + USDC on BNB Chain, with real transfers today.",
+    points: ["Live balances", "Real send & receive", "Both mainnets"],
+    live: true,
   },
 ];
 
@@ -36,11 +40,11 @@ export function ProductOverview() {
         <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
           <SectionHeading
             eyebrow="Product overview"
-            title="One capital layer for four planned capabilities"
-            description="These are planned product capabilities, not live services. Every screen on this page is a static concept preview."
+            title="Live wallet today, lending when ready"
+            description="Wallet balances and transfers work now on both mainnets. Lending, borrowing, and strategies unlock only after contracts are deployed and reviewed."
           />
           <Reveal delay={100}>
-            <span className="demo-chip">Planned capabilities · Not live</span>
+            <span className="status-chip">Wallet live · Lending not deployed</span>
           </Reveal>
         </div>
 
@@ -64,7 +68,7 @@ export function ProductOverview() {
                   ))}
                 </ul>
                 <p className="mt-4 inline-flex items-center gap-1 text-[13px] font-semibold text-accent-bright">
-                  Planned <ArrowUpRight size={14} aria-hidden="true" />
+                  {c.live ? "Live now" : "Not deployed yet"} <ArrowUpRight size={14} aria-hidden="true" />
                 </p>
               </article>
             </Reveal>

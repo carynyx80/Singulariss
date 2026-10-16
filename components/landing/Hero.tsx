@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { ArrowRight, LayoutDashboard } from "lucide-react";
-import { HeroDashboardMock } from "./HeroDashboardMock";
+import { LivePortfolioCard } from "./LivePortfolioCard";
 import { Reveal } from "./Reveal";
 
 export function Hero() {
@@ -28,8 +28,8 @@ export function Hero() {
             Chain and BNB Chain.
           </p>
           <p className="mt-3 max-w-xl text-sm leading-relaxed text-muted/90">
-            Singularis is a planned protocol concept. This page is a design preview — markets,
-            strategies, and balances shown are illustrative placeholders, not live services.
+            Balances shown are read live from the chain once you connect. Lending markets and
+            strategies are not live services yet.
           </p>
           <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:items-center">
             <Link href="#markets" className="btn-primary">
@@ -52,7 +52,7 @@ export function Hero() {
             aria-hidden="true"
           />
           <div className="relative animate-float">
-            <HeroDashboardMock />
+            <LivePortfolioCard />
           </div>
         </Reveal>
       </div>

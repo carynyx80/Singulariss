@@ -22,7 +22,7 @@ const COLUMNS = [
     links: [
       { label: "Product overview", href: "#markets" },
       { label: "Strategies (preview)", href: "#strategies" },
-      { label: "Demo preview", href: "/preview" },
+      { label: "Live wallet", href: "/preview" },
     ],
   },
   {
@@ -46,11 +46,12 @@ export function SiteFooter() {
               <span className="text-sm font-bold tracking-[0.22em] text-white">SINGULARIS</span>
             </div>
             <p className="mt-4 max-w-sm text-sm leading-relaxed text-muted">
-              A planned multichain capital protocol for collateralized borrowing, lending, and
-              approved yield strategies. Concept preview only — no live markets or transactions.
+              A multichain capital protocol: live wallet balances and transfers on Robinhood
+              Chain and BNB Chain today; collateralized borrowing, lending, and approved yield
+              strategies to follow after contracts deploy.
             </p>
             <p className="mt-4 inline-flex">
-              <span className="demo-chip">Preview Mode — No live transactions</span>
+              <span className="status-chip">Live transfers · Lending not deployed</span>
             </p>
           </div>
           <div className="grid grid-cols-2 gap-8 sm:grid-cols-4">
@@ -76,8 +77,8 @@ export function SiteFooter() {
           </div>
         </div>
         <div className="mt-12 flex flex-col gap-2 border-t border-white/[0.07] pt-6 text-xs leading-relaxed text-muted sm:flex-row sm:items-center sm:justify-between">
-          <p>© 2026 Singularis concept preview. All figures shown are illustrative demo data.</p>
-          <p>Not audited. No live protocol, token, or deployment is implied.</p>
+          <p>© 2026 Singularis. Balances shown are live on-chain data.</p>
+          <p>Protocol contracts not audited or deployed. No token exists.</p>
         </div>
       </div>
     </footer>

@@ -3,9 +3,9 @@ import { ArrowLeft } from "lucide-react";
 import { DashboardPreview } from "@/components/landing/DashboardPreview";
 
 export const metadata = {
-  title: "Demo Dashboard Preview — Singularis",
+  title: "Live Wallet — Singularis",
   description:
-    "Static preview of the intended Singularis dashboard. Illustrative demo data only, no live transactions or wallet connection.",
+    "Connect your wallet to see live ETH and USDG balances on Robinhood Chain, or BNB and USDC on BNB Chain, and send real transfers.",
 };
 
 export default function PreviewPage() {
@@ -19,21 +19,20 @@ export default function PreviewPage() {
       </Link>
       <div className="mt-4">
         <p className="text-xs font-semibold uppercase tracking-[0.2em] text-accent-bright">
-          Placeholder application route
+          Application
         </p>
-        <h1 className="mt-2 text-3xl font-bold text-white sm:text-4xl">Demo dashboard preview</h1>
+        <h1 className="mt-2 text-3xl font-bold text-white sm:text-4xl">Your wallet, live</h1>
         <p className="mt-2 max-w-2xl text-sm leading-relaxed text-muted">
-          This is a clearly marked demo route linked from “Launch App”. It shows static
-          illustrative placeholders with no wallet connection, deposits, borrowing, or
-          transactions.
+          Connect on Robinhood Chain for ETH and USDG, or BNB Chain for BNB and USDC. Balances
+          are read from the chain and transfers are real mainnet transactions. Lending,
+          borrowing, and strategies are not deployed yet.
         </p>
       </div>
       <div className="mt-8">
         <DashboardPreview compact />
       </div>
       <p className="mt-6 text-center text-xs text-muted">
-        All figures are illustrative demo data — not real protocol TVL, funds, yield, or market
-        data.
+        Balances shown are live on-chain data. No lending markets are deployed.
       </p>
     </div>
   );

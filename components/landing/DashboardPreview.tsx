@@ -1,197 +1,113 @@
 "use client";
 
 import { useState } from "react";
-import { Eye, LayoutDashboard, ShieldAlert } from "lucide-react";
+import { Eye, LayoutDashboard, Lock, RefreshCw, ShieldAlert, Wallet } from "lucide-react";
+import { useAccount, useChainId } from "wagmi";
 import { cn } from "@/lib/utils";
-import {
-  DEMO_ALLOCATION,
-  DEMO_BORROWED,
-  DEMO_COLLATERAL,
-  DEMO_LIQUIDITY,
-  DEMO_MARKETS,
-  DEMO_PORTFOLIO_VALUE,
-  DEMO_STRATEGIES,
-  DEMO_SUPPLIED,
-} from "@/lib/demo-data";
+import { chainById } from "@/lib/chains";
+import { assetsForChain } from "@/lib/tokens";
+import { useAssetBalances } from "@/lib/useBalances";
+import { ActivityFeed } from "./ActivityFeed";
 import { Reveal } from "./Reveal";
 import { SectionHeading } from "./SectionHeading";
+import { TransferForm } from "./TransferForm";
 
 const TABS = [
   { id: "overview", label: "Overview" },
-  { id: "markets", label: "Lending Markets" },
-  { id: "strategies", label: "Strategies" },
-  { id: "collateral", label: "Collateral" },
+  { id: "send", label: "Send & Receive" },
+  { id: "activity", label: "Activity" },
 ] as const;
 
 type TabId = (typeof TABS)[number]["id"];
 
-function PreviewNotice() {
+function LiveNotice() {
   return (
     <div className="flex flex-col gap-2 rounded-xl border border-[#10B981]/25 bg-[#10B981]/[0.07] p-3.5 text-sm sm:flex-row sm:items-center sm:justify-between">
       <p className="inline-flex items-center gap-2 font-semibold text-white">
         <Eye size={16} className="text-accent-bright" aria-hidden="true" />
-        Preview Mode — No live transactions
+        Live wallet data — transfers are real transactions
       </p>
       <p className="text-xs text-muted sm:text-right">
-        Static demo data only. Tabs switch locally — connecting a wallet does not enable transactions.
+        Balances read from the chain. Lending, borrowing, and strategies are not available yet.
       </p>
     </div>
   );
 }
 
 function OverviewTab() {
-  return (
-    <div className="grid gap-4 lg:grid-cols-[1fr_1fr]">
-      <div className="rounded-2xl border border-white/[0.07] bg-white/[0.02] p-5">
-        <div className="flex items-center justify-between">
-          <p className="text-xs uppercase tracking-wider text-muted">Portfolio value · demo</p>
-          <span className="demo-chip">Illustrative Demo</span>
-        </div>
-        <p className="num mt-2 text-4xl font-bold text-white">{DEMO_PORTFOLIO_VALUE}</p>
-        <p className="mt-1 text-xs text-muted">Demo total for layout — not real funds or TVL</p>
-        <div className="mt-4 flex h-2.5 overflow-hidden rounded-full bg-white/[0.06]" aria-hidden="true">
-          {DEMO_ALLOCATION.map((a) => (
-            <span key={a.label} style={{ width: `${a.pct}%`, background: a.color }} />
-          ))}
-        </div>
-        <div className="mt-3 grid grid-cols-2 gap-2 text-xs">
-          {DEMO_ALLOCATION.map((a) => (
-            <div key={a.label} className="flex items-center justify-between rounded-lg border border-white/[0.06] px-2.5 py-2">
-              <span className="inline-flex items-center gap-1.5 text-muted">
-                <span className="h-1.5 w-1.5 rounded-full" style={{ background: a.color }} />
-                {a.label} · demo
-              </span>
-              <span className="num font-semibold text-white">{a.pct}%</span>
-            </div>
-          ))}
-        </div>
-      </div>
-      <div className="space-y-4">
-        <div className="rounded-2xl border border-white/[0.07] bg-white/[0.02] p-5">
-          <p className="text-xs uppercase tracking-wider text-muted">Supplied assets · demo</p>
-          <div className="mt-3 space-y-2">
-            {DEMO_SUPPLIED.map((a) => (
-              <div key={a.symbol} className="flex items-center justify-between text-sm">
-                <span className="inline-flex items-center gap-2.5">
-                  <span className="grid h-8 w-8 place-items-center rounded-full bg-[#10B981]/15 text-sm font-bold text-accent-bright">
-                    {a.glyph}
-                  </span>
-                  <span>
-                    <span className="block font-semibold text-white">{a.symbol}</span>
-                    <span className="num block text-xs text-muted">{a.balance} · demo</span>
-                  </span>
-                </span>
-                <span className="num text-white/85">{a.value}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-        <div className="grid gap-4 sm:grid-cols-2">
-          <div className="rounded-2xl border border-white/[0.07] bg-white/[0.02] p-5">
-            <p className="text-xs uppercase tracking-wider text-muted">Borrowed · demo</p>
-            <div className="mt-2 space-y-2 text-sm">
-              {DEMO_BORROWED.map((a) => (
-                <div key={a.symbol} className="flex items-center justify-between">
-                  <span className="font-semibold text-white">{a.symbol} <span className="font-normal text-muted">· demo</span></span>
-                  <span className="num text-white/85">{a.value}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-          <div className="rounded-2xl border border-white/[0.07] bg-white/[0.02] p-5">
-            <p className="text-xs uppercase tracking-wider text-muted">Available liquidity · demo</p>
-            <p className="num mt-2 text-xl font-bold text-white">{DEMO_LIQUIDITY}</p>
-            <p className="mt-1 text-[11px] text-muted">Illustrative figure for layout only</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
+  const { isConnected } = useAccount();
+  const chainId = useChainId();
+  const meta = chainById(chainId);
+  const { balances, isLoading, refetch } = useAssetBalances();
+  const supported = assetsForChain(chainId).length > 0;
 
-function MarketsTab() {
-  return (
-    <div className="overflow-hidden rounded-2xl border border-white/[0.07]">
-      <div className="hidden grid-cols-[1.2fr_1fr_1fr_1fr_0.8fr] gap-3 border-b border-white/[0.07] bg-white/[0.02] px-5 py-3 text-xs uppercase tracking-wider text-muted sm:grid">
-        <span>Asset · demo</span>
-        <span>Supply · demo</span>
-        <span>Borrow · demo</span>
-        <span>Liquidity · demo</span>
-        <span className="text-right">Status</span>
+  if (!isConnected) {
+    return (
+      <div className="rounded-2xl border border-white/[0.07] bg-white/[0.02] p-8 text-center">
+        <Wallet size={22} className="mx-auto text-accent-bright" aria-hidden="true" />
+        <p className="mt-3 font-semibold text-white">Connect your wallet</p>
+        <p className="mx-auto mt-1 max-w-sm text-sm text-muted">
+          Your live ETH + USDG balances on Robinhood Chain, or BNB + USDC on BNB Chain, appear
+          here. Use the Connect Wallet button above.
+        </p>
       </div>
-      <div className="divide-y divide-white/[0.06]">
-        {DEMO_MARKETS.map((m) => (
-          <div key={m.asset} className="grid gap-2 px-5 py-4 text-sm sm:grid-cols-[1.2fr_1fr_1fr_1fr_0.8fr] sm:items-center sm:gap-3">
-            <span className="inline-flex items-center gap-2.5">
-              <span className="grid h-8 w-8 place-items-center rounded-full bg-[#10B981]/15 text-sm font-bold text-accent-bright">
-                {m.glyph}
+    );
+  }
+
+  if (!supported) {
+    return (
+      <div className="rounded-2xl border border-amber-400/25 bg-amber-400/[0.06] p-6 text-center text-sm text-amber-100">
+        Unsupported network. Switch to Robinhood Chain or BNB Chain from the wallet menu to see
+        your assets.
+      </div>
+    );
+  }
+
+  return (
+    <div className="space-y-4">
+      <div className="flex items-center justify-between">
+        <p className="text-sm text-muted">
+          {meta ? meta.label : `Chain ${chainId}`} · {balances.length} supported assets
+        </p>
+        <button
+          type="button"
+          onClick={refetch}
+          disabled={isLoading}
+          className="inline-flex items-center gap-1.5 rounded-lg border border-white/10 px-2.5 py-1.5 text-xs font-medium text-muted transition-colors hover:bg-white/[0.06] hover:text-white disabled:opacity-50"
+        >
+          <RefreshCw size={13} aria-hidden="true" className={isLoading ? "animate-spin" : ""} />
+          Refresh
+        </button>
+      </div>
+      <div className="grid gap-3 sm:grid-cols-2">
+        {balances.map((b) => (
+          <div key={b.asset.symbol} className="rounded-2xl border border-white/[0.07] bg-white/[0.02] p-5">
+            <div className="flex items-center gap-2.5">
+              <span className="grid h-9 w-9 place-items-center rounded-full bg-[#10B981]/15 font-bold text-accent-bright">
+                {b.asset.glyph}
               </span>
-              <span className="font-semibold text-white">{m.asset}</span>
-              <span className="demo-chip !text-[10px]">Demo</span>
-            </span>
-            <span className="text-muted">{m.supplyLabel} data</span>
-            <span className="text-muted">{m.borrowLabel} data</span>
-            <span className="num text-white/85">{m.liquidityLabel}</span>
-            <span className="sm:text-right">
-              <span className="badge">{m.status}</span>
-            </span>
+              <div>
+                <p className="font-semibold text-white">{b.asset.symbol}</p>
+                <p className="text-xs text-muted">{b.asset.name}</p>
+              </div>
+            </div>
+            <p className="num mt-3 truncate text-2xl font-bold text-white">
+              {b.isLoading ? "…" : b.isError ? "—" : b.formatted}
+            </p>
+            <p className="mt-1 text-xs text-muted">
+              {b.isError ? "Could not load — check your connection and refresh." : "Live on-chain balance"}
+            </p>
           </div>
         ))}
       </div>
-      <p className="border-t border-white/[0.07] bg-white/[0.01] px-5 py-3 text-xs text-muted">
-        Illustrative static rows for layout only. Not real market data, rates, or liquidity.
-      </p>
-    </div>
-  );
-}
-
-function StrategiesTab() {
-  const riskStyle: Record<string, string> = {
-    Low: "border-[#10B981]/30 bg-[#10B981]/10 text-[#6EE7B7]",
-    Moderate: "border-amber-400/30 bg-amber-400/10 text-amber-200",
-    Elevated: "border-rose-400/30 bg-rose-400/10 text-rose-200",
-  };
-  return (
-    <div className="grid gap-4 md:grid-cols-3">
-      {DEMO_STRATEGIES.map((s) => (
-        <article key={s.name} className="flex flex-col rounded-2xl border border-white/[0.07] bg-white/[0.02] p-5">
-          <div className="flex items-center justify-between gap-2">
-            <span className={cn("rounded-full border px-2.5 py-1 text-[11px] font-semibold", riskStyle[s.risk])}>
-              {s.risk} risk · demo
-            </span>
-            <span className="demo-chip !text-[10px]">Demo</span>
-          </div>
-          <h3 className="mt-3 font-semibold text-white">{s.name}</h3>
-          <p className="text-xs text-muted">{s.type}</p>
-          <p className="mt-2 flex-1 text-sm leading-relaxed text-muted">{s.description}</p>
-          <p className="mt-4 border-t border-white/[0.07] pt-3 text-xs text-muted">{s.status}</p>
-        </article>
-      ))}
-    </div>
-  );
-}
-
-function CollateralTab() {
-  return (
-    <div className="grid gap-4 md:grid-cols-3">
-      {DEMO_COLLATERAL.map((c) => (
-        <article key={c.asset} className="rounded-2xl border border-white/[0.07] bg-white/[0.02] p-5">
-          <div className="flex items-center justify-between">
-            <span className="inline-flex items-center gap-2.5">
-              <span className="grid h-9 w-9 place-items-center rounded-full bg-[#10B981]/15 font-bold text-accent-bright">
-                {c.glyph}
-              </span>
-              <span className="font-semibold text-white">{c.asset}</span>
-            </span>
-            <span className="demo-chip !text-[10px]">Demo</span>
-          </div>
-          <p className="mt-3 text-sm">
-            <span className="badge">{c.eligibility}</span>
-          </p>
-          <p className="num mt-3 text-sm text-white/85">Max exposure: {c.maxLabel}</p>
-          <p className="mt-1 text-xs text-muted">{c.note}</p>
-        </article>
-      ))}
+      <div className="flex items-start gap-3 rounded-2xl border border-white/[0.07] bg-white/[0.01] p-4 text-sm">
+        <Lock size={16} className="mt-0.5 shrink-0 text-muted" aria-hidden="true" />
+        <p className="text-muted">
+          <span className="font-semibold text-white">Lending, borrowing, and yield strategies</span>{" "}
+          are not available yet — no protocol contracts are deployed. Your assets stay in your
+          wallet until contracts are deployed, reviewed, and explicitly enabled.
+        </p>
+      </div>
     </div>
   );
 }
@@ -210,19 +126,19 @@ export function DashboardPreview({ compact = false }: { compact?: boolean }) {
           <>
             <div className="flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
               <SectionHeading
-                eyebrow="Dashboard preview"
-                title="A calm preview of the intended product"
-                description="Overview, lending markets, strategies, and collateral in one place. Every figure is a static demo placeholder."
+                eyebrow="Your money"
+                title="Live balances, real transfers"
+                description="Connect on Robinhood Chain for ETH and USDG, or BNB Chain for BNB and USDC. Everything here is read from — or written to — the real chain."
               />
             </div>
             <Reveal delay={80}>
               <div className="mt-6">
-                <PreviewNotice />
+                <LiveNotice />
               </div>
             </Reveal>
           </>
         ) : (
-          <PreviewNotice />
+          <LiveNotice />
         )}
 
         <Reveal delay={compact ? 0 : 120}>
@@ -233,10 +149,10 @@ export function DashboardPreview({ compact = false }: { compact?: boolean }) {
             <div className="flex flex-col gap-3 border-b border-white/[0.07] p-4 sm:flex-row sm:items-center sm:justify-between sm:px-5">
               <p className="inline-flex items-center gap-2 text-sm font-semibold text-white">
                 <LayoutDashboard size={16} className="text-accent-bright" aria-hidden="true" />
-                Singularis Preview
-                <span className="demo-chip">Illustrative Demo</span>
+                Singularis Wallet
+                <span className="badge-emerald">Live</span>
               </p>
-              <div className="flex gap-1 overflow-x-auto rounded-xl border border-white/[0.07] bg-black/30 p-1" role="tablist" aria-label="Dashboard preview tabs">
+              <div className="flex gap-1 overflow-x-auto rounded-xl border border-white/[0.07] bg-black/30 p-1" role="tablist" aria-label="Wallet tabs">
                 {TABS.map((t) => (
                   <button
                     key={t.id}
@@ -258,17 +174,16 @@ export function DashboardPreview({ compact = false }: { compact?: boolean }) {
 
             <div className="p-4 sm:p-5" role="tabpanel">
               {tab === "overview" ? <OverviewTab /> : null}
-              {tab === "markets" ? <MarketsTab /> : null}
-              {tab === "strategies" ? <StrategiesTab /> : null}
-              {tab === "collateral" ? <CollateralTab /> : null}
+              {tab === "send" ? <TransferForm /> : null}
+              {tab === "activity" ? <ActivityFeed /> : null}
             </div>
 
             <div className="flex flex-col gap-1 border-t border-white/[0.07] bg-white/[0.01] px-5 py-3.5 text-xs text-muted sm:flex-row sm:items-center sm:justify-between">
               <span className="inline-flex items-center gap-1.5">
                 <ShieldAlert size={14} aria-hidden="true" />
-                Mainnet wallet connection · No transactions · Demo data only
+                Transfers are real mainnet transactions — always verify the address
               </span>
-              <span>Not real TVL, funds, yield, or market data</span>
+              <span>No valuations shown — no price feeds integrated</span>
             </div>
           </div>
         </Reveal>

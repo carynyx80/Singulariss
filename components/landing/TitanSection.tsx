@@ -34,7 +34,7 @@ export function TitanSection() {
             <Reveal delay={100}>
               <div className="mt-6 rounded-2xl border border-[#10B981]/25 bg-[#10B981]/[0.06] p-5">
                 <p className="text-4xl font-bold tracking-tight text-white">
-                  $TITAN <span className="demo-chip ml-2 align-middle">Concept only</span>
+                  $TITAN <span className="status-chip ml-2 align-middle">Planned — no token exists</span>
                 </p>
                 <p className="mt-3 text-sm leading-relaxed text-muted">
                   No tokenomics, supply, price, APR, contract address, or staking functionality is
