@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import { ArrowUpRight, Menu, X } from "lucide-react";
+import { ArrowUpRight, HandCoins, Home, Landmark, Menu, Vault, X } from "lucide-react";
 import { ConnectWalletButton } from "./ConnectWalletButton";
 import { LogoMark } from "./LogoMark";
 
@@ -15,13 +15,20 @@ const LINKS = [
   { href: "#about", label: "About" },
 ];
 
+const MOBILE_LINKS = [
+  { href: "/", label: "Home", icon: Home },
+  { href: "/lend", label: "Lending", icon: HandCoins },
+  { href: "/borrow", label: "Borrowing", icon: Landmark },
+  { href: "/vaults", label: "Vaults", icon: Vault },
+];
+
 export function SiteNavbar() {
   const [open, setOpen] = useState(false);
 
   return (
     <header className="sticky top-0 z-40 border-b border-white/[0.07] bg-[#080B09]/90 backdrop-blur-md">
       <div className="mx-auto flex h-16 w-full max-w-6xl items-center justify-between gap-3 px-4 sm:px-6">
-        <Link href="#top" className="flex items-center gap-2.5" aria-label="Singularis home">
+        <Link href="/" className="flex items-center gap-2.5" aria-label="Singularis home">
           <LogoMark size={34} />
           <span className="leading-tight">
             <span className="block text-sm font-bold tracking-[0.22em] text-white">SINGULARIS</span>
@@ -73,25 +80,24 @@ export function SiteNavbar() {
           aria-label="Mobile"
         >
           <div className="flex flex-col gap-1">
-            {LINKS.map((l) => (
-              <a
+            {MOBILE_LINKS.map((l) => (
+              <Link
                 key={l.href}
                 href={l.href}
                 onClick={() => setOpen(false)}
-                className="rounded-lg px-3 py-2.5 text-sm font-medium text-white/85 hover:bg-white/[0.05]"
+                className="flex items-center gap-3 rounded-xl px-3 py-3 text-[15px] font-medium text-white/85 transition-colors hover:bg-white/[0.05] hover:text-white"
               >
+                <span className="grid h-9 w-9 place-items-center rounded-xl border border-[#10B981]/25 bg-[#10B981]/10 text-accent-bright">
+                  <l.icon size={17} aria-hidden="true" />
+                </span>
                 {l.label}
-              </a>
+              </Link>
             ))}
             <div className="mt-3 rounded-xl border border-white/[0.08] bg-white/[0.02] p-3 text-xs text-muted">
               <p className="font-semibold uppercase tracking-wider text-white/70">Networks</p>
-              <p className="mt-1">Robinhood Chain — mainnet supported</p>
-              <p>BNB Chain — mainnet supported</p>
+              <p className="mt-1">Robinhood Chain — mainnet live</p>
+              <p>BNB Chain — mainnet live</p>
             </div>
-            <p className="mt-2 px-1 text-xs text-muted">
-              Wallet connection is live for the two mainnets. Lending markets remain
-              unavailable — no protocol deposits yet.
-            </p>
           </div>
         </nav>
       ) : null}
