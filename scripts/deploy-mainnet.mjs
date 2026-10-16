@@ -167,13 +167,22 @@ if (!broadcast) {
 }
 
 // --- Broadcast ---
+// NOTE (viem 2.21): deployContract returns the TRANSACTION HASH, not the
+// address. The vault address comes from the deployment receipt.
 console.log("\nBroadcasting vault deployment…");
-const vaultAddr = await walletClient.deployContract({
+const deployHash = await walletClient.deployContract({
   abi: artifact.abi,
   bytecode: artifact.bytecode,
   args: ctorArgs,
   chain: plan.chain,
 });
+console.log(`Deploy tx: ${deployHash}`);
+const deployReceipt = await publicClient.waitForTransactionReceipt({ hash: deployHash });
+const vaultAddr = deployReceipt.contractAddress;
+if (!vaultAddr) {
+  console.error("Deployment receipt has no contract address. Resolve manually from the deploy tx.");
+  process.exit(1);
+}
 console.log(`Vault deployed: ${vaultAddr}`);
 
 const lockHash = await walletClient.writeContract({
