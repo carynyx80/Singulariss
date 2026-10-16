@@ -27,10 +27,10 @@ function LiveNotice() {
     <div className="flex flex-col gap-2 rounded-xl border border-[#10B981]/25 bg-[#10B981]/[0.07] p-3.5 text-sm sm:flex-row sm:items-center sm:justify-between">
       <p className="inline-flex items-center gap-2 font-semibold text-white">
         <Eye size={16} className="text-accent-bright" aria-hidden="true" />
-        Live wallet data — transfers are real transactions
+        Live wallet data — every action is a real transaction
       </p>
       <p className="text-xs text-muted sm:text-right">
-        Balances read from the chain. Lending, borrowing, and strategies are not available yet.
+        Balances, vaults, and Venus borrowing live. Vault yield activates after review.
       </p>
     </div>
   );

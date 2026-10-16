@@ -6,17 +6,17 @@ const NETWORKS = [
   {
     icon: Layers,
     name: "Robinhood Chain",
-    tagline: "Planned integration",
-    body: "Designed as a primary home for Singularis lending markets and strategy discovery, with a focus on accessible, mobile-first capital tools.",
-    bullets: ["Planned lending markets", "Planned collateral support", "Deployment subject to readiness reviews"],
+    tagline: "Live",
+    body: "Connect your wallet for live ETH and USDG balances, transfers, and deposits into the capped USDG vault.",
+    bullets: ["Live wallet balances & transfers", "Live USDG vault deposits", "No lending venue integrated yet"],
     accent: "from-[#10B981]/20 via-transparent to-transparent",
   },
   {
     icon: Boxes,
     name: "BNB Chain",
-    tagline: "Planned integration",
-    body: "Designed as a complementary ecosystem for deep liquidity and broad asset coverage, unified under one preview dashboard.",
-    bullets: ["Planned market coverage", "Planned strategy curation", "Launch subject to risk controls"],
+    tagline: "Live",
+    body: "The full stack: wallet balances, transfers, the USDC vault, and collateralized borrowing through Venus.",
+    bullets: ["Live wallet, vault & borrowing", "Venus Core Pool integrated", "Vault yield pending review"],
     accent: "from-[#EAB308]/[0.12] via-transparent to-transparent",
   },
 ];
@@ -27,8 +27,8 @@ export function Ecosystem() {
       <div className="mx-auto w-full max-w-6xl px-4 sm:px-6">
         <SectionHeading
           eyebrow="Multichain ecosystem"
-          title="Building across two ecosystems"
-          description="Both networks are represented as planned integrations, not live deployments. No chain upgrades, contracts, or partnerships are implied."
+          title="Live on two networks"
+          description="Real balances, transfers, and deposits on both chains — plus borrowing on BNB Chain. Vault yield strategies activate after review."
         />
 
         <div className="mt-10 grid gap-4 lg:grid-cols-2">
@@ -54,9 +54,9 @@ export function Ecosystem() {
                     ))}
                   </ul>
                   <div className="mt-6 flex items-center justify-between border-t border-white/[0.07] pt-4 text-xs text-muted">
-                    <span>Not yet connected · No live deployment</span>
+                    <span>Mainnet · Verify every address on the explorer</span>
                     <span className="inline-flex items-center gap-1 font-semibold text-white/70">
-                      Planned <ArrowUpRight size={14} aria-hidden="true" />
+                      Live <ArrowUpRight size={14} aria-hidden="true" />
                     </span>
                   </div>
                 </div>
@@ -67,8 +67,8 @@ export function Ecosystem() {
 
         <Reveal delay={120}>
           <p className="mx-auto mt-6 max-w-3xl text-center text-xs leading-relaxed text-muted">
-            Wallet connection already works on both networks below. No protocol deployment
-            addresses, partnerships, or completed lending deployments are implied.
+            Contracts are unaudited. No partnerships or endorsements are implied by any network or
+            protocol name shown here.
           </p>
         </Reveal>
       </div>

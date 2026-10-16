@@ -16,7 +16,7 @@ const POINTS = [
   {
     icon: Coins,
     title: "Staking concept",
-    body: "$TITAN is described only as a planned utility and staking concept. No staking functionality exists in this preview.",
+    body: "$TITAN is a planned utility and staking concept only. No staking functionality exists.",
   },
 ];
 
@@ -60,8 +60,7 @@ export function TitanSection() {
               <div className="flex h-full flex-col justify-center rounded-2xl border border-dashed border-white/15 p-6 text-sm leading-relaxed text-muted">
                 <p className="font-semibold text-white">What is not claimed</p>
                 <p className="mt-2">
-                  This preview invents no allocations, emissions, valuations, or launch timelines
-                  for $TITAN.
+                  No allocations, emissions, valuations, or launch timelines are stated for $TITAN.
                 </p>
               </div>
             </Reveal>

@@ -23,7 +23,7 @@ const COLUMNS = [
     title: "Documentation",
     links: [
       { label: "Product overview", href: "#markets" },
-      { label: "Strategies (preview)", href: "#strategies" },
+      { label: "Strategies", href: "#strategies" },
       { label: "Live wallet", href: "/preview" },
     ],
   },

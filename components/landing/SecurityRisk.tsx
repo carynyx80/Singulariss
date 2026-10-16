@@ -5,23 +5,23 @@ import { SectionHeading } from "./SectionHeading";
 const ITEMS = [
   {
     icon: KeyRound,
-    title: "Assets & collateral parameters",
-    body: "Supported assets, loan-to-value limits, and liquidation thresholds will require explicit, conservative risk parameters before any launch.",
+    title: "Conservative limits",
+    body: "Both vaults cap deposits at 10,000 assets with zero strategy allocation — everything stays idle and withdrawable.",
   },
   {
     icon: Database,
-    title: "Oracles & liquidations",
-    body: "Oracle integrations and liquidation mechanisms will need redundant price sources, fallback procedures, and clearly disclosed failure modes.",
+    title: "Borrowing risk",
+    body: "Venus borrowing is overcollateralized with live health checks — borrow beyond your limit and liquidators can seize collateral.",
   },
   {
     icon: Scale,
     title: "Yield strategies",
-    body: "Approved yield strategies will require defined exposure caps, exit assumptions, and ongoing monitoring — concepts only in this preview.",
+    body: "Approved yield strategies require defined exposure caps, exit assumptions, and ongoing monitoring before activation.",
   },
   {
     icon: FileWarning,
-    title: "Security reviews",
-    body: "Appropriate security reviews will be required before handling real funds. This concept has not been audited and claims no audit.",
+    title: "No audit yet",
+    body: "Singularis vault contracts handle real funds without an independent audit. Caps stay low until one exists.",
   },
 ];
 
@@ -31,8 +31,8 @@ export function SecurityRisk() {
       <div className="mx-auto w-full max-w-6xl px-4 sm:px-6">
         <SectionHeading
           eyebrow="Security and risk"
-          title="Risk-first by design, audit before anything real"
-          description="A concise view of what must be in place before Singularis could safely progress beyond a concept preview."
+          title="Risk-first, stated plainly"
+          description="What protects funds today — and what each future step requires."
         />
         <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {ITEMS.map((c, i) => (
@@ -49,8 +49,8 @@ export function SecurityRisk() {
         </div>
         <Reveal delay={120}>
           <p className="mt-6 rounded-2xl border border-white/[0.08] bg-white/[0.02] p-4 text-center text-sm text-muted">
-            This project has not been audited. Do not treat any preview screen as a safety claim or
-            an invitation to deposit funds.
+            Vault contracts have not been independently audited. Start small and verify every
+            address on the explorer.
           </p>
         </Reveal>
       </div>

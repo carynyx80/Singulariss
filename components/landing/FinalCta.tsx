@@ -21,13 +21,12 @@ export function FinalCta() {
                 Build a Better Relationship With Your Capital.
               </h2>
               <p className="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-muted">
-                Singularis envisions a unified multichain capital layer — where lending, borrowing,
-                and curated strategies meet transparent risk and calm, readable tooling. This
-                preview is the first step in sharing that direction.
+                A unified multichain capital layer — live lending, borrowing, and transfers today,
+                with curated yield strategies activating after review.
               </p>
               <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
                 <Link href="#preview" className="btn-primary">
-                  Explore the Preview <ArrowRight size={17} aria-hidden="true" />
+                  Open live wallet <ArrowRight size={17} aria-hidden="true" />
                 </Link>
                 <Link href="/preview" className="btn-ghost">
                   Open live wallet

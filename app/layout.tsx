@@ -7,7 +7,7 @@ import { SiteFooter } from "@/components/landing/SiteFooter";
 export const metadata: Metadata = {
   title: "Singularis — Put Your Capital to Work",
   description:
-    "Singularis is a planned multichain DeFi capital protocol concept for lending, borrowing, and approved yield strategies across Robinhood Chain and BNB Chain. Preview only — no live markets or transactions.",
+    "Singularis is a multichain DeFi capital protocol with live wallet balances, transfers, vault deposits, and Venus borrowing across Robinhood Chain and BNB Chain.",
   icons: {
     icon: "/logo.jpg",
     apple: "/logo.jpg",

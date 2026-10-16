@@ -28,8 +28,8 @@ export function Hero() {
             Chain and BNB Chain.
           </p>
           <p className="mt-3 max-w-xl text-sm leading-relaxed text-muted/90">
-            Balances shown are read live from the chain once you connect. Lending markets and
-            strategies are not live services yet.
+            Balances, vault deposits, and Venus borrowing are live on-chain. Vault yield
+            strategies activate after review.
           </p>
           <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:items-center">
             <Link href="#markets" className="btn-primary">
@@ -40,9 +40,9 @@ export function Hero() {
             </Link>
           </div>
           <div className="mt-6 flex flex-wrap gap-2 text-xs">
-            <span className="badge">Robinhood Chain · Planned</span>
-            <span className="badge">BNB Chain · Planned</span>
-            <span className="badge">Wallet connects to both mainnets</span>
+            <span className="badge">Robinhood Chain · Live</span>
+            <span className="badge">BNB Chain · Live</span>
+            <span className="badge">Wallet connects to both</span>
           </div>
         </Reveal>
 

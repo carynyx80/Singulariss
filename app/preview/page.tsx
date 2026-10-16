@@ -18,9 +18,9 @@ export default function PreviewPage() {
         <ArrowLeft size={16} aria-hidden="true" /> Back to overview
       </Link>
       <div className="mt-4">
-        <p className="text-xs font-semibold uppercase tracking-[0.2em] text-accent-bright">
-          Application
-        </p>
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-accent-bright">
+            Live wallet
+          </p>
         <h1 className="mt-2 text-3xl font-bold text-white sm:text-4xl">Your wallet, live</h1>
         <p className="mt-2 max-w-2xl text-sm leading-relaxed text-muted">
           Connect on Robinhood Chain for ETH and USDG, or BNB Chain for BNB and USDC. Balances

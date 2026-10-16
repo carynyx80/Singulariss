@@ -13,13 +13,13 @@ const STEPS = [
     icon: WalletCards,
     step: "Step 2",
     title: "Supply eligible assets",
-    body: "Eligible assets will be supplied to lending markets once contracts deploy. Meanwhile your assets live in your own wallet — hold and transfer them freely.",
+    body: "Supply USDG or USDC into the live vaults — capped, pausable, and withdrawable anytime.",
   },
   {
     icon: Search,
     step: "Step 3",
     title: "Manage borrowing or explore approved strategies",
-    body: "Borrowing health and approved strategy concepts would be managed from one dashboard. All actions here are visual placeholders only.",
+    body: "Borrow on BNB Chain through Venus, track your health, and watch for vault yield strategies as they activate.",
   },
 ];
 
@@ -29,8 +29,8 @@ export function HowItWorks() {
       <div className="section-pad mx-auto w-full max-w-6xl px-4 sm:px-6">
         <SectionHeading
           eyebrow="How it works"
-          title="A clear path, when the protocol matures"
-          description="A three-step flow showing the intended experience. Nothing on this page connects a wallet or submits a transaction."
+          title="Live in three steps"
+          description="Connect, supply, borrow — all on-chain today. Vault yield strategies follow after review."
         />
 
         <div className="relative mt-10 grid gap-4 md:grid-cols-3">
@@ -55,10 +55,10 @@ export function HowItWorks() {
           <div className="mt-8 flex items-start gap-3 rounded-2xl border border-amber-400/20 bg-amber-400/[0.06] p-4 text-sm leading-relaxed text-white/85">
             <Info size={18} className="mt-0.5 shrink-0 text-amber-300" aria-hidden="true" />
             <p>
-              <span className="font-semibold text-white">Preview notice: </span>
-              wallet connection works for both mainnets, but deposits, borrowing, and on-chain
-              transactions are intentionally not implemented in this phase. The dashboard below
-              remains a static preview.
+              <span className="font-semibold text-white">Risk notice: </span>
+              transfers, deposits, and borrowing are real mainnet transactions. Vault contracts
+              are unaudited — start small, verify every address, and never supply more than you
+              can afford to lose.
             </p>
           </div>
         </Reveal>
